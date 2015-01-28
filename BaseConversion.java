@@ -15,6 +15,9 @@ public class BaseConversion {
 		int startNumber;
 		int baseChange;
 		int counter = 0;
+		// ASCII representation of {0,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16}
+		int[] hexidecimal = {48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 
+							65, 66, 67, 68, 69, 70};
 		
 		// Prompts user for starting base-10 number.
 		System.out.print("Please enter base-10 number: ");
@@ -27,11 +30,12 @@ public class BaseConversion {
 		
 		// Loop performs calculations and prints out the division,
 		// the answers and the remainders.
-		while((startNumber != 0)) {
-			System.out.printf("%5d / %d = %-5d, remainder %d \n", 
+		while(startNumber != 0) {
+			System.out.printf("%5d / %d = %-5d, remainder %c \n", 
 					startNumber, baseChange, startNumber / baseChange, 
-					startNumber % baseChange);
-			number.add(startNumber % baseChange);
+					(char)hexidecimal[startNumber % baseChange]);
+			
+			number.add(hexidecimal[startNumber % baseChange]);
 			startNumber = startNumber / baseChange;
 			
 			if (startNumber != 0) {
@@ -44,7 +48,7 @@ public class BaseConversion {
 		System.out.println();
 		System.out.print("Your new number is ");
 		for (int i = counter; i >= 0; i--) {
-			System.out.print(number.get(i));
+			System.out.print((char)number.get(i).intValue());
 		}
 	}
 //-----------------------------------------------------------------------------
