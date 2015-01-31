@@ -1,4 +1,5 @@
 package collection;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.ArrayList;
 //=============================================================================
@@ -12,21 +13,44 @@ public class BaseConversion {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		int startNumber;
-		int baseChange;
+		int startNumber = 0;
+		int baseChange = 2;
 		int counter = 0;
+		boolean success;
 		// ASCII representation of {0,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16}
 		int[] hexidecimal = {48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 
 							65, 66, 67, 68, 69, 70};
 		
-		// Prompts user for starting base-10 number.
-		System.out.print("Please enter base-10 number: ");
-		startNumber = keyboard.nextInt();
+		// Prompts user for starting base-10 number. Exception/While loop 
+		// catches inputs that aren't proper integers.
+		success = false;
+		while (!success) {
+			try {
+				System.out.print("Please enter base-10 number (no decimal): ");
+				startNumber = keyboard.nextInt();
+				success = true;
+			} catch (InputMismatchException e) {
+				keyboard.nextLine();
+			} catch (NumberFormatException e) {
+				keyboard.nextLine();
+			}
+		}
 		
-		// Prompts user for desired new base.
-		System.out.print("Please enter new base: ");
-		baseChange = keyboard.nextInt();
-		System.out.println();
+		// Prompts user for desired new base. Exception/While loop 
+		// catches inputs that aren't proper integers.
+		success = false;
+		while (!success) {
+			try {
+				System.out.print("Please enter new base (no decimal): ");
+				baseChange = keyboard.nextInt();
+				success = true;
+				System.out.println();
+			} catch (InputMismatchException e) {
+				keyboard.nextLine();
+			} catch (NumberFormatException e) {
+				keyboard.nextLine();
+			}
+		}
 		
 		// Loop performs calculations and prints out the division,
 		// the answers and the remainders.
