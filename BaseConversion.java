@@ -20,11 +20,12 @@ public class BaseConversion {
 		int[] hexidecimal = {48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 
 							65, 66, 67, 68, 69, 70};
 		
-		startNumber = getNumber();
-		baseChange = getNumber();
+		startNumber = getNumber("Please enter base-10 number (no decimal): ");
+		baseChange = getNumber("Please enter new base (no decimal): ");
 		
 		// Loop performs calculations and prints out the division,
 		// the answers and the remainders.
+		System.out.println();
 		while(startNumber != 0) {
 			System.out.printf("%5d / %d = %-5d, remainder %c \n", 
 					startNumber, baseChange, startNumber / baseChange, 
@@ -52,7 +53,7 @@ public class BaseConversion {
 	 * @return Returns user's number input
 	 * @author Sherman Hewitt
 	 */
-	private static int getNumber() {
+	private static int getNumber(String prompt) {
 		boolean success;
 		int number = 0;
 		
@@ -61,7 +62,7 @@ public class BaseConversion {
 		success = false;
 		while (!success) {
 			try {
-				System.out.print("Please enter base-10 number (no decimal): ");
+				System.out.print(prompt);
 				number = keyboard.nextInt();
 				success = true;
 			} catch (InputMismatchException e) {
